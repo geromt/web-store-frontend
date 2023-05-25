@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/contacto.css">
+  </head>
+
+  <body>
+    <nav id="barra-nav">
+      <div class="circular">
+        <img class="imagen-nav" src="../media/logo.png" alt="Apple Store logo">
+      </div>
+      <div class="contenedor-nav">
+        <span>Apple Store</span>
+      </div>
+      <button class="contenedor-nav" onclick="dropdown('unete-dropdown')">ÚNETE</button>
+      <button class="contenedor-nav" onclick="dropdown('comprar-dropdown')">
+        COMPRAR
+      </button>
+      <a class="circular" href="./index.html">
+        <img class="imagen-nav" src="../media/home.png" alt="Link a Home">
+      </a>
+      <div id="unete-dropdown" class="dropdown">
+        <a href="./registrar-usuario.html">Regístrate</a>
+        <a id="inicia-sesion" href="./acceder.html">Inicia Sesion</a>
+        <a href="./contacto.html">Horarios</a>
+      </div>
+      <div id="comprar-dropdown" class="dropdown">
+        <a href="./compra-iphone.html">iPhone</a>
+        <a href="./compra-macbook.html">MacBook</a>
+        <a href="./compra-accesorios.html">Accesorios</a>
+      </div>
+    </nav>
+
+    <main>
+      <div id="horarios">
+        <ul style="--length: 7" role="list">
+          <li style="--i: 1">
+            <h3>Lunes</h3>
+            <p class="horario">11:00 - 20:00</p>
+          </li>
+          <li style="--i: 2">
+            <h3>Martes</h3>
+            <p class="horario">11:00 - 20:00</p>
+          </li>
+          <li style="--i: 3">
+            <h3>Miércoles</h3>
+            <p class="horario">11:00 - 20:00</p>
+          </li>
+          <li style="--i: 4">
+            <h3>Jueves</h3>
+            <p class="horario">11:00 - 20:00</p>
+          </li>
+          <li style="--i: 5">
+            <h3>Viernes</h3>
+            <p class="horario">11:00 - 20:00</p>
+          </li>
+          <li style="--i: 6">
+            <h3>Sábado</h3>
+            <p class="horario">11:00 - 20:00</p>
+          </li>
+          <li style="--i: 7">
+            <h3>Domingo</h3>
+            <p class="horario">11:00 - 20:00</p>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <footer>
+      <p class="texto-footer">Aquí nos puedes contactar: Al Número 55 1037 6400. En la zona Vasco de Quiroga, Lomas de Santa Fe, Delegación
+        Cuajimalpa de Morelos, C.P. 05109, CDMX</p>
+    </footer>
+
+    <script src="../js/dropdown.js"></script>
+    <script>
+      accedePerfil();
+    </script>
+
+  </body>
+</html>

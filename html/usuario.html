@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Apple Store</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/usuario.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <nav id="barra-nav">
+      <div class="circular">
+        <img class="imagen-nav" src="../media/logo.png" alt="Apple Store logo">
+      </div>
+      <div class="contenedor-nav">
+        <span>Apple Store</span>
+      </div>
+      <button class="contenedor-nav" onclick="dropdown('unete-dropdown')">ÚNETE</button>
+      <button class="contenedor-nav" onclick="dropdown('comprar-dropdown')">
+        COMPRAR
+      </button>
+      <a class="circular" href="./index.html">
+        <img class="imagen-nav" src="../media/home.png" alt="Link a Home">
+      </a>
+      <div id="unete-dropdown" class="dropdown">
+        <a href="./registrar-usuario.html">Regístrate</a>
+        <a id="inicia-sesion" href="./acceder.html">Inicia Sesion</a>
+        <a href="./contacto.html">Horarios</a>
+      </div>
+      <div id="comprar-dropdown" class="dropdown">
+        <a href="./compra-iphone.html">iPhone</a>
+        <a href="./compra-macbook.html">MacBook</a>
+        <a href="./compra-accesorios.html">Accesorios</a>
+      </div>
+    </nav>
+
+    <main>
+      <div class="informacion">
+        <h3 id="bienvenida"></h3>
+        <table class="info-table">
+          <tr>
+            <td>Email</td>
+            <td id="email"></td>
+          </tr>
+          <tr>
+            <td>Fecha de Nacimiento</td>
+            <td id="nacimiento"></td>
+          </tr>
+          <tr>
+            <td>Teléfono</td>
+            <td id="telefono"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="cerrar-sesion">
+        <button onclick="CerrarSesion()">Cerrar sesión</button>
+      </div>
+
+      <div class="compras">
+        <h3>Compras que has realizado</h3>
+        <table id="compras-table" class="info-table">
+          <tr>
+            <th>Fecha y hora</th>
+            <th>Nombre</th>
+            <th>Costo</th>
+          </tr>
+
+        </table>
+      </div>
+    </main>
+
+    <footer>
+      <p class="texto-footer">Aquí nos puedes contactar: Al Número 55 1037 6400. En la zona Vasco de Quiroga, Lomas de Santa Fe, Delegación
+        Cuajimalpa de Morelos, C.P. 05109, CDMX</p>
+    </footer>
+
+    <script src="../js/dropdown.js"></script>
+    <script src="../js/usuario.js"></script>
+    <script>
+      accedePerfil();
+      getCompras(sessionStorage.getItem("id_usuario"));
+    </script>
+  </body>
+</html>

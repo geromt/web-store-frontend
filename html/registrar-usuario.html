@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Apple Store</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/forms.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <nav id="barra-nav">
+      <div class="circular">
+        <img class="imagen-nav" src="../media/logo.png" alt="Apple Store logo">
+      </div>
+      <div class="contenedor-nav">
+        <span>Apple Store</span>
+      </div>
+      <button class="contenedor-nav" onclick="dropdown('unete-dropdown')">ÚNETE</button>
+      <button class="contenedor-nav" onclick="dropdown('comprar-dropdown')">
+        COMPRAR
+      </button>
+      <a class="circular" href="./index.html">
+        <img class="imagen-nav" src="../media/home.png" alt="Link a Home">
+      </a>
+      <div id="unete-dropdown" class="dropdown">
+        <a href="./registrar-usuario.html">Regístrate</a>
+        <a id="inicia-sesion" href="./acceder.html">Inicia Sesion</a>
+        <a href="./contacto.html">Horarios</a>
+      </div>
+      <div id="comprar-dropdown" class="dropdown">
+        <a href="./compra-iphone.html">iPhone</a>
+        <a href="./compra-macbook.html">MacBook</a>
+        <a href="./compra-accesorios.html">Accesorios</a>
+      </div>
+    </nav>
+
+    <main>
+      <h2>Regístrate</h2>
+
+      <form action="https://tienda-web-api.000webhostapp.com/register.php" method="post">
+        <ul>
+          <li>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="nombre" autocomplete="given-name" placeholder="Nombre" required>
+          </li>
+          <li>
+            <label for="apellido-paterno">Apellido paterno:</label>
+            <input type="text" id="apellido-paterno" name="apellido-paterno" autocomplete="family-name" placeholder="Apellido Paterno" required>
+          </li>
+          <li>
+            <label for="name">Apellido materno:</label>
+            <input type="text" id="apellido-materno" name="apellido-materno" placeholder="Apellido Materno" required>
+          </li>
+          <li>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="correo@mail.com" required>
+          </li>
+          <li>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" autocomplete="new-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$" required>
+            <p id="password-indicaciones">Debe tener entre 8 y 20 carácteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 de los siguientes símbolos !@#$%^&*_=+-</p>
+            
+          </li>
+          <li>
+            <label for="confirma-password">Confirma password:</label>
+            <input type="password" id="confirma-password" name="confirma-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$" required>
+          </li>
+          <li>
+            <label for="nacimiento">Fecha de nacimiento:</label>
+            <input type="date" id="nacimiento" name="nacimiento" autocomplete="bday" required>
+          </li>
+          <li>
+            <label for="telefoto">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" autocomplete="tel" pattern="^(\s*|\d+)$" required>
+          </li>
+          <li class="button">
+            <button id="registrate-button" type="submit">ENVIAR</button>
+            <button id="reset-button" type="reset">BORRAR</button>
+          </li>          
+        </ul>
+      </form>  
+
+      <div class="anuncio">
+        <div class="anuncio-contenido">
+          <div id="mensaje">
+            <p>Te has registrado correctamente</p>
+          </div>
+          <a id="ir-home" href="./index.html">Ir a página principal</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p class="texto-footer">Aquí nos puedes contactar: Al Número 55 1037 6400. En la zona Vasco de Quiroga, Lomas de Santa Fe, Delegación
+        Cuajimalpa de Morelos, C.P. 05109, CDMX</p>
+    </footer>
+
+    <script src="../js/dropdown.js"></script>
+    <script>
+      // Revisa que confirma-password coindica con password
+      const password = document.getElementById("password");
+      const confirmaPassword = document.getElementById("confirma-password");
+
+      confirmaPassword.addEventListener("input", function (event) {
+        if (confirmaPassword.value != password.value) {
+          confirmaPassword.setCustomValidity("Las contraseñas no coinciden");
+        } else {
+          confirmaPassword.setCustomValidity("");
+        }
+      });
+
+      // Muestra ventana de confirmacion
+      function confirmarRegistro(){
+        const modal = document.getElementsByClassName("anuncio")[0];
+        modal.style.display = "block";
+      }
+      
+      accedePerfil();
+    </script>
+    <script>
+      // Recupera el json resultante de mandar el formulario sin cambiar de ventana
+      $(function(){
+        $("form").submit(function(){
+          event.stopPropagation();
+          event.preventDefault();
+          $.post($(this).attr("action"), $(this).serialize(), function(jsonData){
+            console.log(jsonData);
+            if (jsonData["status"] == "success") {
+              confirmarRegistro();
+            }
+          }, "json");
+        });
+      });
+    </script>
+  </body>
+</html>

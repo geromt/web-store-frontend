@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Apple Store</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/countVisitas.js"></script>
+  </head>
+
+  <body>
+    <nav id="barra-nav">
+      <div class="circular">
+        <img class="imagen-nav" src="../media/logo.png" alt="Apple Store logo">
+      </div>
+      <div class="contenedor-nav">
+        <span>Apple Store</span>
+      </div>
+      <button class="contenedor-nav" onclick="dropdown('unete-dropdown')">ÚNETE</button>
+      <button class="contenedor-nav" onclick="dropdown('comprar-dropdown')">
+        COMPRAR
+      </button>
+      <a class="circular" href="./index.html">
+        <img class="imagen-nav" src="../media/home.png" alt="Link a Home">
+      </a>
+      <div id="unete-dropdown" class="dropdown">
+        <a href="./registrar-usuario.html">Regístrate</a>
+        <a id="inicia-sesion" href="./acceder.html">Inicia Sesion</a>
+        <a href="./contacto.html">Horarios</a>
+      </div>
+      <div id="comprar-dropdown" class="dropdown">
+        <a href="./compra-iphone.html">iPhone</a>
+        <a href="./compra-macbook.html">MacBook</a>
+        <a href="./compra-accesorios.html">Accesorios</a>
+      </div>
+    </nav>
+
+    <main>
+      <div id="visitas"> 
+        Núm. visitas
+        <div id="contador-visitas"></div>
+      </div>
+
+      <div id="sesion">
+        Bienvenido
+        <div id="nombre"></div>
+      </div>
+
+      <div class="renglon-imagenes">
+        <img class="imagen-index" src="../media/iphone-14-plus.png" alt="IPhone 14">
+        <img class="imagen-index" src="../media/ipad-pro.png" alt="IPad">
+        <img class="imagen-index" src="../media/cargador.png" alt="Cargador">
+      </div>
+
+      <div id="introduccion">
+        <p>Aquí podrás comprar celulares, audífonos, cargadores, computadoras, bocinas, relojes inteligentes, accesorios
+        para computadora, etc.</p>
+      </div>
+
+      <div class="renglon-imagenes">
+        <img class="imagen-index" src="../media/macbook.png" alt="MacBook">
+        <img class="imagen-index" src="../media/bocina.avif" alt="Bocina">
+        <img class="imagen-index" src="../media/apple-watch.png" alt="Apple Watch">
+      </div>
+    </main>
+
+    <footer>
+      <p class="texto-footer">Aquí nos puedes contactar: Al Número 55 1037 6400. En la zona Vasco de Quiroga, Lomas de Santa Fe, Delegación
+        Cuajimalpa de Morelos, C.P. 05109, CDMX</p>
+    </footer>
+
+    <script src="../js/dropdown.js"></script>
+    <script>
+      const sesionInfo = document.getElementById("sesion");
+      const nombreUser = document.getElementById("nombre");
+      if (sessionStorage.getItem("nombre")){
+        console.log("Nombre de usuario: " + sessionStorage.getItem("nombre"));
+        sesionInfo.style.display = "block";
+        nombreUser.innerHTML = sessionStorage.getItem("nombre");
+      } else {
+        sesionInfo.style.display = "none";
+      }
+
+      updateVisitas();
+      accedePerfil();
+    </script>
+  </body>
+</html>

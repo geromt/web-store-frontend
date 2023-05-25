@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Compra Iphone</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/compra.css">
+    <script src="../js/compra.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <nav id="barra-nav">
+      <div class="circular">
+        <img class="imagen-nav" src="../media/logo.png" alt="Apple Store logo">
+      </div>
+      <div class="contenedor-nav">
+        <span>Apple Store</span>
+      </div>
+      <button class="contenedor-nav" onclick="dropdown('unete-dropdown')">ÚNETE</button>
+      <button class="contenedor-nav" onclick="dropdown('comprar-dropdown')">
+        COMPRAR
+      </button>
+      <a class="circular" href="./index.html">
+        <img class="imagen-nav" src="../media/home.png" alt="Link a Home">
+      </a>
+      <div id="unete-dropdown" class="dropdown">
+        <a href="./registrar-usuario.html">Regístrate</a>
+        <a id="inicia-sesion" href="./acceder.html">Inicia Sesion</a>
+        <a href="./contacto.html">Horarios</a>
+      </div>
+      <div id="comprar-dropdown" class="dropdown">
+        <a href="./compra-iphone.html">iPhone</a>
+        <a href="./compra-macbook.html">MacBook</a>
+        <a href="./compra-accesorios.html">Accesorios</a>
+      </div>
+    </nav>
+
+    <main>
+      <div class="grid-productos">
+      </div>
+
+      <div class="confirmacion">
+        <div class="confirmacion-contenedor">
+          <div class="confirmacion-contenido">
+            <img id="confirmacion-imagen" src="../media/airpods.png"/>
+            <div class="confirmacion-info">
+              <p>¿Estás seguro que quieres comprar este producto?</p>
+              <h2 id="confirmacion-nombre"></h2>
+              <h3 id="confirmacion-descripcion"></h3>
+              <h3 id="confirmacion-precio"></h3>
+              <div id="id-holder" hidden></div>
+              <button onclick="comprar()">Comprar</button>
+            </div>
+            <span class="close" onclick="ocultarConfirmacion()">&times;</span>
+          </div>
+          <div id="comentario-form">
+            <h2>Haz un comentario</h2>
+            <form action="https://tienda-web-api.000webhostapp.com/comment.php" method="post">
+              <ul>
+                <li>
+                  <textarea id="comentario" name="comentario" placeholder="Haz un comentario aquí." required></textarea>
+                </li>
+                <li>
+                  <input type="text" id="id_usuario" name="id_usuario" hidden>
+                  <input type="text" id="id_producto" name="id_producto" hidden>
+                  <input type="text" id="fecha_hora" name="fecha_hora" hidden>
+                </li>
+                <li class="button">
+                  <button id="comenta-button" type="submit">ENVIAR</button>
+                </li>          
+              </ul>
+            </form>
+          </div>
+          <h2>Comentarios</h2>
+          <div id="comentarios" class="comentarios-container"></div>
+        </div>	          		
+      </div>
+
+      <div id="exito-compra" class="anuncio">
+        <div class="anuncio-contenido">
+          <div id="mensaje">
+            <p>Compra realizada exitosamente.</p>
+          </div>
+          <button onclick="continuar()">Continuar</a>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <p class="texto-footer">Aquí nos puedes contactar: Al Número 55 1037 6400. En la zona Vasco de Quiroga, Lomas de Santa Fe, Delegación
+        Cuajimalpa de Morelos, C.P. 05109, CDMX</p>
+    </footer>
+
+    <script src="../js/dropdown.js"></script>
+    <script>
+      const comentarioForm = document.getElementById("comentario-form");
+      if (sessionStorage.getItem("nombre")) {
+        comentarioForm.style.display = "block";
+      } else {
+        comentarioForm.style.display = "none";
+      }
+
+      getProductos(3);
+      accedePerfil();
+    </script>
+    <script>
+      // Recupera el json resultante de mandar el formulario sin cambiar de ventana
+      $(function(){
+        $("form").submit(function(){
+          const comentario = document.getElementById("comentario");
+          const idUsuario =  document.getElementById("id_usuario");
+          const idProducto = document.getElementById("id_producto");
+          const fechaHora = document.getElementById("fecha_hora");
+          idUsuario.value = sessionStorage.getItem("id_usuario");
+          fechaHora.value = getTime();
+
+          console.log(idUsuario.value);
+          console.log(idProducto.value);
+          console.log(fechaHora.value);
+          event.stopPropagation();
+          event.preventDefault();
+          $.post($(this).attr("action"), $(this).serialize(), function(jsonData){
+            console.log(jsonData);
+            if (jsonData["status"] == "success") {
+              comentario.value = "";
+              getComments(idProducto.value);
+            }
+          }, "json");
+        });
+      });
+    </script>
+  </body>
+</html>
