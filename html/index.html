@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>Apple Store</title>
-    <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../js/countVisitas.js"></script>
   </head>
 
   <body>
-    <nav id="barra-nav">
-      <div class="circular">
-        <img class="imagen-nav" src="../media/logo.png" alt="Apple Store logo">
+    <nav id="barra-nav" class="flex flex-row flex-wrap items-center justify-around shadow-lg w-full h-16 top-0 left-0 fixed bg-white z-50">
+      <div class="rounded-full shadow-lg p-2">
+        <img src="../media/logo.png" alt="Apple Store logo" class="w-12 h-12 block">
       </div>
       <div class="contenedor-nav">
         <span>Apple Store</span>
@@ -20,15 +20,15 @@
       <button class="contenedor-nav" onclick="dropdown('comprar-dropdown')">
         COMPRAR
       </button>
-      <a class="circular" href="./index.html">
-        <img class="imagen-nav" src="../media/home.png" alt="Link a Home">
+      <a href="./index.html" class="rounded-full shadow-lg p-2">
+        <img src="../media/home.png" alt="Link a Home" class="w-12 h-12 block">
       </a>
-      <div id="unete-dropdown" class="dropdown">
+      <div id="unete-dropdown" class="absolute top-16 flex flex-col">
         <a href="./registrar-usuario.html">Regístrate</a>
         <a id="inicia-sesion" href="./acceder.html">Inicia Sesion</a>
         <a href="./contacto.html">Horarios</a>
       </div>
-      <div id="comprar-dropdown" class="dropdown">
+      <div id="comprar-dropdown" class="absolute top-16 flex flex-col">
         <a href="./compra-iphone.html">iPhone</a>
         <a href="./compra-macbook.html">MacBook</a>
         <a href="./compra-accesorios.html">Accesorios</a>
