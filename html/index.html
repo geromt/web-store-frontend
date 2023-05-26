@@ -5,33 +5,43 @@
     <title>Apple Store</title>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../media/logo.png">
     <script src="../js/countVisitas.js"></script>
   </head>
 
   <body>
-    <nav id="barra-nav" class="flex flex-row flex-wrap items-center justify-around shadow-lg w-full h-16 top-0 left-0 fixed bg-white z-50">
-      <div class="rounded-full shadow-lg p-2">
+    <nav id="barra-nav" class="flex flex-row flex-wrap items-center justify-around w-full h-16 top-0 left-0 fixed bg-white z-50">
+      <div class="rounded-full p-2">
         <img src="../media/logo.png" alt="Apple Store logo" class="w-12 h-12 block">
       </div>
-      <div class="contenedor-nav">
-        <span>Apple Store</span>
-      </div>
-      <button class="contenedor-nav" onclick="dropdown('unete-dropdown')">ÚNETE</button>
-      <button class="contenedor-nav" onclick="dropdown('comprar-dropdown')">
-        COMPRAR
+      
+      <a href="./compra-iphone.html">Phones</a>
+      <a href="./compra-macbook.html">PC</a>
+      <a href="./compra-accesorios.html">Accessories</a>
+      <button onclick="dropdown('unete-dropdown')" class="border-solid border-2 border-black rounded-lg flex flex-row h-8 p-4 items-center justify-between">
+        <img src="https://static.vecteezy.com/system/resources/previews/000/576/246/original/vector-sign-of-people-icon.jpg" alt="Person Icon" class="w-4 h-4">
+        SIGN IN
       </button>
-      <a href="./index.html" class="rounded-full shadow-lg p-2">
-        <img src="../media/home.png" alt="Link a Home" class="w-12 h-12 block">
+
+      <a href="./index.html" class="rounded-full p-2">
+        <img src="https://equalrightscenter.org/wp-content/uploads/house-icon-1.png" alt="Link a Home" class="w-12 h-12 block">
       </a>
-      <div id="unete-dropdown" class="absolute top-16 flex flex-col">
-        <a href="./registrar-usuario.html">Regístrate</a>
-        <a id="inicia-sesion" href="./acceder.html">Inicia Sesion</a>
-        <a href="./contacto.html">Horarios</a>
-      </div>
-      <div id="comprar-dropdown" class="absolute top-16 flex flex-col">
-        <a href="./compra-iphone.html">iPhone</a>
-        <a href="./compra-macbook.html">MacBook</a>
-        <a href="./compra-accesorios.html">Accesorios</a>
+      <div id="login-dropdown" class="absolute top-16 flex flex-col bg-white border-solid border-2 border-black">
+        <p class="text-center ml-4 mr-4 rounded-md p-2 border-b-2 border-black">Log In</p>
+        <form action="https://dictated-reader.000webhostapp.com/access.php" method="post">
+          <ul>
+            <li>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="email" class="m-4 rounded-lg shadow-inner border border-gray-400 p-2 border-solid" required>
+            </li>
+            <li>
+              <input type="password" id="password" name="password" autocomplete="new-password" placeholder="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$" class="m-4 rounded-lg shadow-inner border border-gray-400 p-2 border-solid" required>
+            </li>
+            <li class="flex flex-row items-center justify-center"> 
+              <button id="registrate-button" type="submit" class="inline-block border-solid border-2 border-black rounded-lg pt-2 pb-2 pl-12 pr-12 bg-white hover:bg-gray-100 hover:scale-110">LOGIN</button>
+            </li>
+          </ul>
+        </form>
+        <a href="./registrar-usuario.html" class="text-center mt-4">Sign up</a>
       </div>
     </nav>
 
